@@ -18,7 +18,7 @@ public class UiMenu {
 
             switch (response){
                 case 1:
-                    System.out.println("Doctor");
+                    System.out.println("Junior");
                     break;
                 case 2:
                     response = 0;
