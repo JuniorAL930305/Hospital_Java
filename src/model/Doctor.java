@@ -1,14 +1,31 @@
+package model;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Doctor extends  User {
+public class Doctor extends User {
     //Atributos
     private String speciality;
-    Doctor(String name, String email){
+    public Doctor(String name, String email){
         super(name,email);
         System.out.println("El nombre del doctor asignado es "+ name+"  y su especialidad es "+speciality);
         this.speciality=speciality;
     }
+
+    @Override
+    public String toString() {
+        return "Doctor{" +
+                "speciality='" + speciality + '\'' +
+                '}';
+    }
+    @Override
+    public void showDataUser() {
+        System.out.println("Empleado del Hospital: Cruz Roja");
+        System.out.println("Departamento: Cancerologia ");
+    }
+
     public String getSpeciality() {
         return speciality;
     }
@@ -20,7 +37,7 @@ public class Doctor extends  User {
     }
 
     ArrayList<AvailableAppointment> availableAppointments=new ArrayList<>();
-    public void  addAvailableAppointment(Date date, String time){ // añade nuevas citas deisponibles que se acumulan en el array de debajo
+    public void  addAvailableAppointment(String date, String time){ // añade nuevas citas deisponibles que se acumulan en el array de debajo
         availableAppointments.add(new Doctor.AvailableAppointment(date,time));
     }
     public  ArrayList<AvailableAppointment>getAvailableAppointments(){
@@ -30,16 +47,23 @@ public class Doctor extends  User {
     public void availableAppointments(String s) {
     }
 
+
+
     public static class AvailableAppointment{
         //Available Appointment
         private  int id;
         private Date date;
         private  String time;
 
+        SimpleDateFormat format = new SimpleDateFormat("dd//MM/yyyy");
 
 
-        public AvailableAppointment(Date date, String time) { // metodo cosntructor
-            this.date = date;
+        public AvailableAppointment(String date, String time) { // metodo cosntructor
+            try {
+                this.date = format.parse(date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
             this.time = time;
         }
 
@@ -53,6 +77,10 @@ public class Doctor extends  User {
 
         public Date getDate() {
             return date;
+        }
+
+        public String getDate(String DATE) {
+            return format.format(date);
         }
 
         public void setDate(Date date) {

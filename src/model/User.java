@@ -1,4 +1,6 @@
-public class User {
+package model;
+
+public abstract class User { //abstract , con esto ya no puedo crear objetos de tipo model.User
     private int id;
     private String name;
     private String email;
@@ -55,6 +57,7 @@ public class User {
     }
     @Override
     public String toString() {
-        return "User: "+name+ ", Email: "+email+"\n Addreess: "+address+". Phone: "+phoneNumber;
+        return "model.User: "+name+ ", Email: "+email+"\n Addreess: "+address+". Phone: "+phoneNumber;
     }
+    public abstract void showDataUser();
 }
