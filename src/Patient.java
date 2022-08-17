@@ -1,5 +1,5 @@
 public class Patient extends User {
-
+//junior
     private String birthday;
     private double weight;
     private double height;
